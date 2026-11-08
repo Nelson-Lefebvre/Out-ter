@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Out-ter : le puzzle des loutres</title>
+<meta name="description" content="Out-ter : libère les loutres de l'étang. Un puzzle doux à jouer d'un doigt, sur Android.">
+<link rel="icon" href="img/icone-192.png">
+<link rel="apple-touch-icon" href="img/icone-192.png">
+<style>
+  :root {
+    --fond: #FBF4E6;
+    --carte: #FFFDF8;
+    --sable: #F3E2BF;
+    --encre: #4A3426;
+    --encre-douce: #7A5F4B;
+    --eau: #5CC3BA;
+    --sarcelle: #25817A;
+    --ombre: 0 6px 20px rgba(74, 52, 38, 0.10);
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--fond);
+    color: var(--encre);
+    font-family: "Nunito", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+  }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--sarcelle); }
+  .page { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+  header.haut {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 14px 0;
+  }
+  .marque { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; color: var(--encre); }
+  .marque img { width: 40px; height: 40px; border-radius: 10px; }
+  nav.langues a { margin-left: 12px; font-weight: 700; text-decoration: none; }
+
+  .heros { border-radius: 24px; overflow: hidden; box-shadow: var(--ombre); background: var(--eau); }
+  .accroche { text-align: center; padding: 28px 8px 8px; }
+  .accroche h1 { margin: 0 0 8px; font-size: clamp(26px, 6vw, 40px); line-height: 1.15; }
+  .accroche p { margin: 0 auto; max-width: 620px; color: var(--encre-douce); font-size: 18px; }
+  .bientot {
+    display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 999px;
+    background: var(--sarcelle); color: #fff; font-weight: 800;
+  }
+
+  section { margin: 44px 0; }
+  h2 { font-size: clamp(22px, 4.5vw, 28px); margin: 0 0 14px; text-align: center; }
+  .intro { max-width: 680px; margin: 0 auto; text-align: center; }
+
+  .loutres {
+    display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: 14px 22px;
+    margin: 22px auto 0; padding: 22px 12px; max-width: 760px;
+    background: linear-gradient(180deg, var(--eau) 0%, #79CFC6 100%); border-radius: 22px;
+  }
+  /* Les images ont la tête en bas (vue du plateau) : retournées pour qu'elles regardent vers nous. */
+  .loutres img { width: 72px; transform: rotate(180deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.12)); }
+  @media (min-width: 640px) { .loutres { grid-template-columns: repeat(6, auto); } }
+
+  .cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .carte {
+    background: var(--carte); border-radius: 20px; padding: 20px; box-shadow: var(--ombre);
+  }
+  .carte h3 { margin: 0 0 8px; font-size: 19px; }
+  .carte ul { margin: 0; padding-left: 20px; }
+  .carte li { margin: 4px 0; }
+
+  .duo { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+  .duo .visuel { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .tetes img { width: 110px; }
+  .cle img { width: 96px; transform: rotate(180deg); }
+  @media (min-width: 720px) { .duo { grid-template-columns: 1fr 1fr; } }
+
+  .anglais { background: var(--sable); border-radius: 22px; padding: 24px 20px; }
+  .anglais h2 { text-align: left; }
+
+  footer {
+    margin: 40px 0 0; padding: 24px 0 36px; border-top: 2px solid var(--sable);
+    color: var(--encre-douce); font-size: 15px; text-align: center;
+  }
+  footer p { margin: 6px 0; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="haut">
+    <a class="marque" href="./"><img src="img/icone-192.png" alt="">Out-ter</a>
+    <nav class="langues" aria-label="Langue"><a href="#fr" lang="fr">FR</a><a href="#en" lang="en">EN</a></nav>
+  </header>
+
+  <div class="heros">
+    <img src="img/presentation.png" width="1024" height="500" alt="Out-ter : le logo du jeu et une loutre qui sourit, sur une plage">
+  </div>
+
+  <div class="accroche" id="fr">
+    <h1>Libère les loutres de l'étang</h1>
+    <p>Un puzzle doux à jouer d'un doigt. Chaque loutre nage tout droit, dans le sens de sa tête : à toi de trouver le bon ordre.</p>
+    <span class="bientot">Bientôt sur Google Play</span>
+  </div>
+
+  <section>
+    <h2>Comment on joue</h2>
+    <p class="intro">Touche une loutre : si rien ne lui barre la route, elle file hors de l'étang et rejoint ton filet. Trois loutres de la même couleur dans le filet ? Elles repartent ensemble et libèrent de la place. Mais si le filet déborde, la partie est perdue. Réfléchis à l'ordre, dégage les chemins, et vide l'étang.</p>
+    <div class="loutres">
+      <img src="img/loutre-caramel.png" width="120" height="268" alt="Loutre caramel">
+      <img src="img/loutre-blanc.png" width="120" height="268" alt="Loutre blanche">
+      <img src="img/loutre-creme.png" width="120" height="268" alt="Loutre crème">
+      <img src="img/loutre-chocolat.png" width="120" height="268" alt="Loutre chocolat">
+      <img src="img/loutre-noir.png" width="120" height="268" alt="Loutre noire">
+      <img src="img/loutre-raton.png" width="120" height="268" alt="Loutre raton laveur">
+    </div>
+  </section>
+
+  <section>
+    <div class="cartes">
+      <div class="carte">
+        <h3>Calme, à une main</h3>
+        <ul>
+          <li>Un seul geste : toucher.</li>
+          <li>Pas de chrono, pas de pression.</li>
+          <li>Des parties courtes, parfaites pour une pause.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>200 niveaux et des bonus</h3>
+        <ul>
+          <li>Une carte qui remonte la rivière, à travers neuf décors.</li>
+          <li>Trois étoiles à gagner par niveau.</li>
+          <li>Des branches bonus à explorer.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>Le défi du jour</h3>
+        <ul>
+          <li>Trois grilles chaque jour : facile, moyen et difficile.</li>
+          <li>Un calendrier garde la trace de tes jours réussis.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>Le mode compétition</h3>
+        <ul>
+          <li>Des vagues de loutres sans fin.</li>
+          <li>Le classement de la semaine.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="duo">
+    <div>
+      <h2>Une nouvelle idée à chaque chapitre</h2>
+      <p class="intro">Loutres mystère, glace qui fond, cages et clés, tourbillons, jumelles qui sortent ensemble, courants qui emportent tout. La loutre qui tient la clé ouvre la cage de sa lettre.</p>
+    </div>
+    <div class="visuel cle">
+      <img src="img/loutre-cle.png" width="120" height="268" alt="Une loutre couchée sur le dos tient une clé dorée entre ses pattes">
+    </div>
+  </section>
+
+  <section class="duo">
+    <div class="visuel tetes">
+      <img src="img/tete-contente.png" width="220" height="201" alt="La loutre mascotte, contente">
+      <img src="img/tete-inquiete.png" width="220" height="201" alt="La loutre mascotte, inquiète">
+    </div>
+    <div>
+      <h2>Une loutre t'accompagne</h2>
+      <p class="intro">Elle explique chaque nouveauté au bon moment, et réagit à ta partie.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="carte">
+      <h3>Gratuit et respectueux</h3>
+      <ul>
+        <li>Aucun achat intégré : tout se gagne en jouant.</li>
+        <li>Les vidéos récompensées sont toujours facultatives.</li>
+        <li>Ta progression reste sur ton téléphone.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="anglais" id="en" lang="en">
+    <h2>In English</h2>
+    <p>Free the otters from the pond: a cozy one-finger puzzle game. Each otter swims straight ahead, the way its head is pointing. Tap an otter: if nothing blocks its way, it swims out into your net. Three otters of the same color leave together; if the net overflows, the round is lost.</p>
+    <p>200 levels and bonus branches, a daily challenge, a competition mode with a weekly leaderboard. No in-app purchases, rewarded videos are always optional. Coming soon to Google Play.</p>
+    <p><a href="confidentialite/#en">Privacy policy</a></p>
+  </section>
+
+  <footer>
+    <p><a href="confidentialite/">Politique de confidentialité</a> · <a href="confidentialite/#en" lang="en">Privacy policy</a></p>
+    <p>Contact : <a href="mailto:outter.game@protonmail.com">outter.game@protonmail.com</a></p>
+    <p>Out-ter © 2026 Nelson Lefebvre</p>
+  </footer>
+
+</div>
+</body>
+</html>
