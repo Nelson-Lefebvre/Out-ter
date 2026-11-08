@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Out-ter: das Otter-Puzzle</title>
+<meta name="description" content="Out-ter: Befreie die Otter aus dem Teich. Ein entspanntes Puzzle für einen Finger, für Android.">
+<link rel="icon" href="../img/icone-192.png">
+<link rel="apple-touch-icon" href="../img/icone-192.png">
+<link rel="alternate" hreflang="en" href="https://nelson-lefebvre.github.io/Out-ter/">
+<link rel="alternate" hreflang="fr" href="https://nelson-lefebvre.github.io/Out-ter/fr/">
+<link rel="alternate" hreflang="es" href="https://nelson-lefebvre.github.io/Out-ter/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://nelson-lefebvre.github.io/Out-ter/pt-br/">
+<link rel="alternate" hreflang="de" href="https://nelson-lefebvre.github.io/Out-ter/de/">
+<link rel="alternate" hreflang="it" href="https://nelson-lefebvre.github.io/Out-ter/it/">
+<link rel="alternate" hreflang="x-default" href="https://nelson-lefebvre.github.io/Out-ter/">
+<style>
+  :root { --fond: #FBF4E6; --carte: #FFFDF8; --sable: #F3E2BF; --encre: #4A3426; --encre-douce: #7A5F4B;
+          --eau: #5CC3BA; --sarcelle: #25817A; --ombre: 0 6px 20px rgba(74, 52, 38, 0.10); }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--fond); color: var(--encre);
+         font-family: "Nunito", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; font-size: 17px; line-height: 1.55; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--sarcelle); }
+  header.haut { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; flex-wrap: wrap; }
+  .marque { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; color: var(--encre); }
+  .marque img { width: 40px; height: 40px; border-radius: 10px; }
+  nav.langues { display: flex; gap: 8px; flex-wrap: wrap; }
+  nav.langues a { display: block; width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+                  box-shadow: 0 0 0 2px var(--carte), 0 2px 6px rgba(74, 52, 38, 0.25); opacity: 0.75; }
+  nav.langues a:hover, nav.langues a:focus-visible { opacity: 1; }
+  nav.langues a[aria-current="page"] { opacity: 1; box-shadow: 0 0 0 3px var(--sarcelle); }
+  nav.langues img { width: 100%; height: 100%; }
+  footer { margin: 40px 0 0; padding: 24px 0 36px; border-top: 2px solid var(--sable); color: var(--encre-douce);
+           font-size: 15px; text-align: center; }
+  footer p { margin: 6px 0; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  .heros { border-radius: 24px; overflow: hidden; box-shadow: var(--ombre); background: var(--eau); }
+  .accroche { text-align: center; padding: 28px 8px 8px; }
+  .accroche h1 { margin: 0 0 8px; font-size: clamp(26px, 6vw, 40px); line-height: 1.15; }
+  .accroche p { margin: 0 auto; max-width: 620px; color: var(--encre-douce); font-size: 18px; }
+  .bientot { display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 999px; background: var(--sarcelle);
+             color: #fff; font-weight: 800; }
+  section { margin: 44px 0; }
+  h2 { font-size: clamp(22px, 4.5vw, 28px); margin: 0 0 14px; text-align: center; }
+  .intro { max-width: 680px; margin: 0 auto; text-align: center; }
+  .loutres { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: 14px 22px;
+             margin: 22px auto 0; padding: 22px 12px; max-width: 760px;
+             background: linear-gradient(180deg, var(--eau) 0%, #79CFC6 100%); border-radius: 22px; }
+  /* Les images ont la tete en bas (vue du plateau) : retournees pour qu'elles regardent vers nous. */
+  .loutres img { width: 72px; transform: rotate(180deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.12)); }
+  @media (min-width: 640px) { .loutres { grid-template-columns: repeat(6, auto); } }
+  .cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .carte { background: var(--carte); border-radius: 20px; padding: 20px; box-shadow: var(--ombre); }
+  .carte h3 { margin: 0 0 8px; font-size: 19px; }
+  .carte ul { margin: 0; padding-left: 20px; }
+  .carte li { margin: 4px 0; }
+  .duo { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+  .duo .visuel { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .tetes img { width: 110px; }
+  .cle img { width: 96px; transform: rotate(180deg); }
+  @media (min-width: 720px) { .duo { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="haut">
+    <a class="marque" href="../de/"><img src="../img/icone-192.png" alt="">Out-ter</a>
+    <nav class="langues" aria-label="Sprache"><a href="../" hreflang="en" lang="en" title="English"><img src="../img/drapeaux/us.svg" width="40" height="40" alt="English"></a><a href="../fr/" hreflang="fr" lang="fr" title="Français"><img src="../img/drapeaux/fr.svg" width="40" height="40" alt="Français"></a><a href="../es/" hreflang="es" lang="es" title="Español"><img src="../img/drapeaux/es.svg" width="40" height="40" alt="Español"></a><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" title="Português (Brasil)"><img src="../img/drapeaux/br.svg" width="40" height="40" alt="Português (Brasil)"></a><a href="../de/" hreflang="de" lang="de" title="Deutsch" aria-current="page"><img src="../img/drapeaux/de.svg" width="40" height="40" alt="Deutsch"></a><a href="../it/" hreflang="it" lang="it" title="Italiano"><img src="../img/drapeaux/it.svg" width="40" height="40" alt="Italiano"></a></nav>
+  </header>
+
+  <div class="heros">
+    <img src="../img/presentation.png" width="1024" height="500" alt="Out-ter: das Logo des Spiels und ein lächelnder Otter an einem Strand">
+  </div>
+
+  <div class="accroche">
+    <h1>Befreie die Otter aus dem Teich</h1>
+    <p>Ein entspanntes Puzzle, das du mit einem Finger spielst. Jeder Otter schwimmt geradeaus, in die Richtung seines Kopfes: Finde die richtige Reihenfolge.</p>
+    <span class="bientot">Bald bei Google Play</span>
+  </div>
+
+  <section>
+    <h2>So wird gespielt</h2>
+    <p class="intro">Tippe auf einen Otter: Wenn ihm nichts im Weg ist, schwimmt er aus dem Teich in dein Netz. Drei Otter derselben Farbe im Netz? Sie gehen zusammen und machen Platz. Aber wenn das Netz überläuft, ist die Runde verloren. Denk über die Reihenfolge nach, mach die Wege frei und leere den Teich.</p>
+    <div class="loutres">
+      <img src="../img/loutre-caramel.png" width="120" height="268" alt="Karamell-Otter">
+      <img src="../img/loutre-blanc.png" width="120" height="268" alt="Weißer Otter">
+      <img src="../img/loutre-creme.png" width="120" height="268" alt="Creme-Otter">
+      <img src="../img/loutre-chocolat.png" width="120" height="268" alt="Schokoladen-Otter">
+      <img src="../img/loutre-noir.png" width="120" height="268" alt="Schwarzer Otter">
+      <img src="../img/loutre-raton.png" width="120" height="268" alt="Waschbär-Otter">
+    </div>
+  </section>
+
+  <section>
+    <div class="cartes">
+      <div class="carte">
+        <h3>Ruhig, mit einer Hand</h3>
+        <ul>
+          <li>Eine einzige Geste: tippen.</li>
+          <li>Keine Uhr, kein Druck.</li>
+          <li>Kurze Runden, perfekt für eine Pause.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>200 Level und Bonus</h3>
+        <ul>
+          <li>Eine Karte flussaufwärts, durch neun Landschaften.</li>
+          <li>Drei Sterne pro Level zu gewinnen.</li>
+          <li>Bonus-Zweige zum Entdecken.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>Die Tagesaufgabe</h3>
+        <ul>
+          <li>Jeden Tag drei Gitter: leicht, mittel und schwer.</li>
+          <li>Ein Kalender merkt sich deine geschafften Tage.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>Der Wettkampfmodus</h3>
+        <ul>
+          <li>Endlose Wellen von Ottern.</li>
+          <li>Die Wochenrangliste.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="duo">
+    <div>
+      <h2>In jedem Kapitel eine neue Idee</h2>
+      <p class="intro">Geheimnisvolle Otter, schmelzendes Eis, Käfige und Schlüssel, Strudel, Zwillinge, die zusammen gehen, Strömungen, die alles mitreißen. Der Otter mit dem Schlüssel öffnet den Käfig mit seinem Buchstaben.</p>
+    </div>
+    <div class="visuel cle">
+      <img src="../img/loutre-cle.png" width="120" height="268" alt="Ein Otter liegt auf dem Rücken und hält einen goldenen Schlüssel zwischen den Pfoten">
+    </div>
+  </section>
+
+  <section class="duo">
+    <div class="visuel tetes">
+      <img src="../img/tete-contente.png" width="220" height="201" alt="Das Otter-Maskottchen, fröhlich">
+      <img src="../img/tete-inquiete.png" width="220" height="201" alt="Das Otter-Maskottchen, besorgt">
+    </div>
+    <div>
+      <h2>Ein Otter begleitet dich</h2>
+      <p class="intro">Er erklärt jede Neuheit im richtigen Moment und reagiert auf dein Spiel.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="carte">
+      <h3>Kostenlos und fair</h3>
+      <ul>
+        <li>Keine In-App-Käufe: Alles wird durch Spielen verdient.</li>
+        <li>Videos mit Belohnung sind immer freiwillig.</li>
+        <li>Dein Fortschritt bleibt auf deinem Handy.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="../privacy/de/">Datenschutzerklärung</a></p>
+    <p>Kontakt: <a href="mailto:outter.game@protonmail.com">outter.game@protonmail.com</a></p>
+    <p>Out-ter © 2026 Nelson Lefebvre</p>
+  </footer>
+</div>
+</body>
+</html>

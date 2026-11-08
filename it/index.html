@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Out-ter: il puzzle delle lontre</title>
+<meta name="description" content="Out-ter: libera le lontre dallo stagno. Un puzzle rilassante da giocare con un dito, su Android.">
+<link rel="icon" href="../img/icone-192.png">
+<link rel="apple-touch-icon" href="../img/icone-192.png">
+<link rel="alternate" hreflang="en" href="https://nelson-lefebvre.github.io/Out-ter/">
+<link rel="alternate" hreflang="fr" href="https://nelson-lefebvre.github.io/Out-ter/fr/">
+<link rel="alternate" hreflang="es" href="https://nelson-lefebvre.github.io/Out-ter/es/">
+<link rel="alternate" hreflang="pt-BR" href="https://nelson-lefebvre.github.io/Out-ter/pt-br/">
+<link rel="alternate" hreflang="de" href="https://nelson-lefebvre.github.io/Out-ter/de/">
+<link rel="alternate" hreflang="it" href="https://nelson-lefebvre.github.io/Out-ter/it/">
+<link rel="alternate" hreflang="x-default" href="https://nelson-lefebvre.github.io/Out-ter/">
+<style>
+  :root { --fond: #FBF4E6; --carte: #FFFDF8; --sable: #F3E2BF; --encre: #4A3426; --encre-douce: #7A5F4B;
+          --eau: #5CC3BA; --sarcelle: #25817A; --ombre: 0 6px 20px rgba(74, 52, 38, 0.10); }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin: 0; background: var(--fond); color: var(--encre);
+         font-family: "Nunito", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif; font-size: 17px; line-height: 1.55; }
+  img { max-width: 100%; height: auto; display: block; }
+  a { color: var(--sarcelle); }
+  header.haut { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 14px 0; flex-wrap: wrap; }
+  .marque { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 20px; text-decoration: none; color: var(--encre); }
+  .marque img { width: 40px; height: 40px; border-radius: 10px; }
+  nav.langues { display: flex; gap: 8px; flex-wrap: wrap; }
+  nav.langues a { display: block; width: 34px; height: 34px; border-radius: 50%; overflow: hidden;
+                  box-shadow: 0 0 0 2px var(--carte), 0 2px 6px rgba(74, 52, 38, 0.25); opacity: 0.75; }
+  nav.langues a:hover, nav.langues a:focus-visible { opacity: 1; }
+  nav.langues a[aria-current="page"] { opacity: 1; box-shadow: 0 0 0 3px var(--sarcelle); }
+  nav.langues img { width: 100%; height: 100%; }
+  footer { margin: 40px 0 0; padding: 24px 0 36px; border-top: 2px solid var(--sable); color: var(--encre-douce);
+           font-size: 15px; text-align: center; }
+  footer p { margin: 6px 0; }
+
+  .page { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+  .heros { border-radius: 24px; overflow: hidden; box-shadow: var(--ombre); background: var(--eau); }
+  .accroche { text-align: center; padding: 28px 8px 8px; }
+  .accroche h1 { margin: 0 0 8px; font-size: clamp(26px, 6vw, 40px); line-height: 1.15; }
+  .accroche p { margin: 0 auto; max-width: 620px; color: var(--encre-douce); font-size: 18px; }
+  .bientot { display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 999px; background: var(--sarcelle);
+             color: #fff; font-weight: 800; }
+  section { margin: 44px 0; }
+  h2 { font-size: clamp(22px, 4.5vw, 28px); margin: 0 0 14px; text-align: center; }
+  .intro { max-width: 680px; margin: 0 auto; text-align: center; }
+  .loutres { display: grid; grid-template-columns: repeat(3, auto); justify-content: center; gap: 14px 22px;
+             margin: 22px auto 0; padding: 22px 12px; max-width: 760px;
+             background: linear-gradient(180deg, var(--eau) 0%, #79CFC6 100%); border-radius: 22px; }
+  /* Les images ont la tete en bas (vue du plateau) : retournees pour qu'elles regardent vers nous. */
+  .loutres img { width: 72px; transform: rotate(180deg); filter: drop-shadow(0 4px 4px rgba(0,0,0,0.12)); }
+  @media (min-width: 640px) { .loutres { grid-template-columns: repeat(6, auto); } }
+  .cartes { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 16px; }
+  .carte { background: var(--carte); border-radius: 20px; padding: 20px; box-shadow: var(--ombre); }
+  .carte h3 { margin: 0 0 8px; font-size: 19px; }
+  .carte ul { margin: 0; padding-left: 20px; }
+  .carte li { margin: 4px 0; }
+  .duo { display: grid; grid-template-columns: 1fr; gap: 18px; align-items: center; }
+  .duo .visuel { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+  .tetes img { width: 110px; }
+  .cle img { width: 96px; transform: rotate(180deg); }
+  @media (min-width: 720px) { .duo { grid-template-columns: 1fr 1fr; } }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="haut">
+    <a class="marque" href="../it/"><img src="../img/icone-192.png" alt="">Out-ter</a>
+    <nav class="langues" aria-label="Lingua"><a href="../" hreflang="en" lang="en" title="English"><img src="../img/drapeaux/us.svg" width="40" height="40" alt="English"></a><a href="../fr/" hreflang="fr" lang="fr" title="Français"><img src="../img/drapeaux/fr.svg" width="40" height="40" alt="Français"></a><a href="../es/" hreflang="es" lang="es" title="Español"><img src="../img/drapeaux/es.svg" width="40" height="40" alt="Español"></a><a href="../pt-br/" hreflang="pt-BR" lang="pt-BR" title="Português (Brasil)"><img src="../img/drapeaux/br.svg" width="40" height="40" alt="Português (Brasil)"></a><a href="../de/" hreflang="de" lang="de" title="Deutsch"><img src="../img/drapeaux/de.svg" width="40" height="40" alt="Deutsch"></a><a href="../it/" hreflang="it" lang="it" title="Italiano" aria-current="page"><img src="../img/drapeaux/it.svg" width="40" height="40" alt="Italiano"></a></nav>
+  </header>
+
+  <div class="heros">
+    <img src="../img/presentation.png" width="1024" height="500" alt="Out-ter: il logo del gioco e una lontra sorridente su una spiaggia">
+  </div>
+
+  <div class="accroche">
+    <h1>Libera le lontre dallo stagno</h1>
+    <p>Un puzzle rilassante da giocare con un dito. Ogni lontra nuota dritta, nella direzione della sua testa: trova l&#x27;ordine giusto.</p>
+    <span class="bientot">Presto su Google Play</span>
+  </div>
+
+  <section>
+    <h2>Come si gioca</h2>
+    <p class="intro">Tocca una lontra: se niente le sbarra la strada, esce dallo stagno e finisce nella tua rete. Tre lontre dello stesso colore nella rete? Se ne vanno insieme e liberano spazio. Ma se la rete trabocca, la partita è persa. Pensa all&#x27;ordine, libera i percorsi e svuota lo stagno.</p>
+    <div class="loutres">
+      <img src="../img/loutre-caramel.png" width="120" height="268" alt="Lontra caramello">
+      <img src="../img/loutre-blanc.png" width="120" height="268" alt="Lontra bianca">
+      <img src="../img/loutre-creme.png" width="120" height="268" alt="Lontra crema">
+      <img src="../img/loutre-chocolat.png" width="120" height="268" alt="Lontra cioccolato">
+      <img src="../img/loutre-noir.png" width="120" height="268" alt="Lontra nera">
+      <img src="../img/loutre-raton.png" width="120" height="268" alt="Lontra procione">
+    </div>
+  </section>
+
+  <section>
+    <div class="cartes">
+      <div class="carte">
+        <h3>Tranquillo, con una mano</h3>
+        <ul>
+          <li>Un solo gesto: toccare.</li>
+          <li>Niente cronometro, niente pressione.</li>
+          <li>Partite brevi, perfette per una pausa.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>200 livelli e bonus</h3>
+        <ul>
+          <li>Una mappa che risale il fiume, attraverso nove paesaggi.</li>
+          <li>Tre stelle da conquistare in ogni livello.</li>
+          <li>Rami bonus da esplorare.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>La sfida del giorno</h3>
+        <ul>
+          <li>Tre griglie ogni giorno: facile, media e difficile.</li>
+          <li>Un calendario tiene traccia dei giorni superati.</li>
+        </ul>
+      </div>
+      <div class="carte">
+        <h3>La modalità competizione</h3>
+        <ul>
+          <li>Ondate di lontre senza fine.</li>
+          <li>La classifica della settimana.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="duo">
+    <div>
+      <h2>Un&#x27;idea nuova in ogni capitolo</h2>
+      <p class="intro">Lontre misteriose, ghiaccio che si scioglie, gabbie e chiavi, vortici, gemelle che escono insieme, correnti che trascinano tutto. La lontra che tiene la chiave apre la gabbia della sua lettera.</p>
+    </div>
+    <div class="visuel cle">
+      <img src="../img/loutre-cle.png" width="120" height="268" alt="Una lontra sdraiata sulla schiena tiene una chiave dorata tra le zampe">
+    </div>
+  </section>
+
+  <section class="duo">
+    <div class="visuel tetes">
+      <img src="../img/tete-contente.png" width="220" height="201" alt="La lontra mascotte, contenta">
+      <img src="../img/tete-inquiete.png" width="220" height="201" alt="La lontra mascotte, preoccupata">
+    </div>
+    <div>
+      <h2>Una lontra ti accompagna</h2>
+      <p class="intro">Spiega ogni novità al momento giusto e reagisce alla tua partita.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="carte">
+      <h3>Gratis e rispettoso</h3>
+      <ul>
+        <li>Nessun acquisto in-app: tutto si guadagna giocando.</li>
+        <li>I video con ricompensa sono sempre facoltativi.</li>
+        <li>I tuoi progressi restano sul tuo telefono.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p><a href="../privacy/it/">Informativa sulla privacy</a></p>
+    <p>Contatto: <a href="mailto:outter.game@protonmail.com">outter.game@protonmail.com</a></p>
+    <p>Out-ter © 2026 Nelson Lefebvre</p>
+  </footer>
+</div>
+</body>
+</html>
